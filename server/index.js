@@ -1,0 +1,31 @@
+const express = require("express");
+const cors = require("cors");
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+// Health check
+app.get("/api", (req, res) => {
+  res.json({ ok: true, name: "LETA API", ts: new Date().toISOString() });
+});
+
+/**
+ * Demo login endpoint.
+ * Vercel > Project Settings > Environment Variables:
+ *   ADMIN_USER, ADMIN_PASS
+ */
+app.post("/api/login", (req, res) => {
+  const { username, password } = req.body || {};
+  const ADMIN_USER = process.env.ADMIN_USER || "LETA";
+  const ADMIN_PASS = process.env.ADMIN_PASS || "1234";
+
+  if (username === ADMIN_USER && password === ADMIN_PASS) {
+    return res.json({ ok: true });
+  }
+  return res.status(401).json({ ok: false, message: "Invalid credentials" });
+});
+
+// IMPORTANT: Do NOT call app.listen() on Vercel.
+module.exports = app;
