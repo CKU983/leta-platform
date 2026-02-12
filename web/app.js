@@ -13,7 +13,8 @@ document.querySelector("form").addEventListener("submit", async function (e) {
   const data = await res.json();
 
   if (data.ok) {
-    document.body.innerHTML += "<h2>Giriş Başarılı ✅</h2>";
+    window.location.href = "/panel.html";
+
   } else {
     alert("Hatalı giriş");
   }
