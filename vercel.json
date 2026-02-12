@@ -5,8 +5,7 @@
     { "src": "web/**/*", "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "/server/index.js" },
-    { "src": "/", "dest": "/web/index.html" },
-    { "src": "/(.*)", "dest": "/web/$1" }
+    { "src": "/api/(.*)", "dest": "server/index.js" },
+    { "src": "/", "dest": "web/index.html" }
   ]
 }
